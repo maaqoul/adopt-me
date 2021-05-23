@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import ThemeContext from './ThemeContext';
 import Carousel from "./Carousel";
 import ErrorBoundary from './ErrorBoundary';
 
@@ -29,7 +30,11 @@ class Details extends Component {
                 <div>
                     <h1>{name}</h1>
                     <h2>{animal} - {breed} - {city}, {state}</h2>
-                    <button>Adop Me!</button>
+                    <ThemeContext.Consumer>
+                        {([theme]) => {
+                            return <button style={{ backgroundColor: theme }}>Adopt {name}!</button>
+                        }}
+                    </ThemeContext.Consumer>
                     <p>{description}</p>
                 </div>
             </div>
